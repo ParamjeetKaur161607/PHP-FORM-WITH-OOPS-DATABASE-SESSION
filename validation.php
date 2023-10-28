@@ -2,6 +2,9 @@
 session_start();
 $name = $email = $password = $dob = "";
 $nameerr = $emailerr = $passworderr = $doberr = "";
+
+$name_edit = $email_edit = $dob_edit = $password_edit="";
+$name_edit_error = $email_edit_error = $dob_edit_error = $password_edit_error=$new_password_edit_error="";
 function my_input($data)
 {
     $data = trim($data);

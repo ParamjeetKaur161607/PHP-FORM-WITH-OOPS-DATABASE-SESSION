@@ -39,23 +39,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     $error = array();
     array_push($error, $nameerr, $emailerr, $doberr, $passworderr);
-    // echo "array:<br>";
-    // print_r($error);
-    // echo "<br>empty<br>";
-    // var_dump(empty($error));
-    // $correct = array();
-    // array_push($correct, $name, $email, $dob, $password);
-    // // print_r($correct);
-
-
+    
     if (isset($_POST['submit'])) {
         if (!strlen($nameerr) && !strlen($emailerr) && !strlen($doberr) && !strlen($passworderr)) {
-            $_SESSION['user'][$_POST['email']] = $_POST;
-            foreach ($_SESSION as $key => $value) {
-                echo "<pre>";
-                print_r($value);
-                echo "</pre>";
+
+            $conn = mysqli_connect('localhost', 'param', '161607', 'user');
+            if (!$conn) {
+                die('Could not connect: ' . mysqli_connect_error());
             }
+            echo 'Connected successfully';
+            
+            if (mysqli_query($conn, "INSERT INTO registration(email,name,dob,password) VALUES(
+                '$_POST[email]',
+                '$_POST[name]',
+                '$_POST[dob]',
+                '$_POST[password]'
+                )")) {
+                echo 'Successfull';
+            } else {
+                echo mysqli_error($conn);
+            }
+            mysqli_close($conn);            
             header("location:loginform.php");
         }
     }
