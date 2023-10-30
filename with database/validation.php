@@ -1,10 +1,10 @@
 <?php
 session_start();
-$name = $email = $password = $dob = "";
-$nameerr = $emailerr = $passworderr = $doberr = "";
+$name = $email = $password = $dob = $file =$upload_date= "";
+$nameerr = $emailerr = $passworderr = $doberr = $fileerr = $upload_date_err= "";
 
-$name_edit = $email_edit = $dob_edit = $password_edit="";
-$name_edit_error = $email_edit_error = $dob_edit_error = $password_edit_error=$new_password_edit_error="";
+$name_edit = $email_edit = $dob_edit = $password_edit=$file_edit="";
+$name_edit_error = $email_edit_error = $dob_edit_error = $password_edit_error=$new_password_edit_error=$file_edit_error="";
 function my_input($data)
 {
     $data = trim($data);

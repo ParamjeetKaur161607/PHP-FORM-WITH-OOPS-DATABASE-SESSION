@@ -52,7 +52,7 @@ include("compare.php");
                         </svg>
                     </a>
                 </div>
-        
+                
             </li>
             <?php
                 $conn = mysqli_connect('localhost', 'param', '161607', 'user');

@@ -42,6 +42,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($dob_edit)) {
         $dob_edit_error = "Please Enter DOB";
     }
+
+    if (isset($_FILES["photo"])) {
+        $file_edit = $_FILES["photo"];
+        $file_name=$_FILES["photo"]["name"];
+        $ex = array("jpg", "jpeg", "png");
+        $ext = pathinfo($file_edit["name"], PATHINFO_EXTENSION);
+        echo $ext;
+        echo "helllo";
+        // echo in_array($ext, $ex);
+        if (in_array($ext, $ex)) {
+            echo "yes";
+            $upload = "IMAGES/".$file_name;
+            // $targetFile = $upload . $_FILES["name"];
+            echo $upload."==================";
+            // echo "-----------------------------".$targetFile;
+            $unique_id=uniqid();            
+        } else {
+            $fileerr= "Invalid file type. Allowed file types: " . implode(", ", $ex);
+        }
+    }    
     
     $conn = mysqli_connect('localhost', 'param', '161607', 'user');
             if (!$conn) {
@@ -51,7 +71,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $email_log= $_SESSION["login"];
             $sql = "SELECT * FROM registration where email='$email_log'";
             $result=mysqli_query($conn, $sql);
-            $row1 = mysqli_fetch_assoc($result);          
+            $row1 = mysqli_fetch_assoc($result);     
+            
+            $file_sql = "SELECT * FROM file_task WHERE email='$email_log'";
+            $file_result=mysqli_query($conn, $file_sql);
+            $file_row = mysqli_fetch_assoc($file_result);
 
             
     if (isset($_POST['update'])) {
@@ -67,8 +91,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $dob_update = "UPDATE registration SET dob='$dob_edit' where email='$email_log'";
                 $dob_updated = mysqli_query($conn, $dob_update);
 
-                $password_update = "UPDATE registration SET password='$new_password' where email='$email_log'";
-                $password_updated = mysqli_query($conn, $password_update);
+                if(!empty($new_password)){
+                    $password_update = "UPDATE registration SET password='$new_password' where email='$email_log'";
+                    $password_updated = mysqli_query($conn, $password_update);
+                }
+                if(!empty($file_edit)){
+                    $file_update = "UPDATE file_task SET image_name='$file_name' where email='$email_log'";
+                    $file_updated = mysqli_query($conn, $file_update);
+                }
 
                 header("location:loginform.php");
                 

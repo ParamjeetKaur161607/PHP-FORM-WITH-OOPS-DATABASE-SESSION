@@ -17,7 +17,7 @@ include 'session.php';
             <header>
                 <h1 class="font-bold text-5xl border-b pb-8 border-gray-500">Registration Form</h1>
             </header>
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" class="bg-gray-200 flex flex-col w-[40rem] gap-5 p-10 rounded-lg" autocomplete="off">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" class="bg-gray-200 flex flex-col w-[40rem] gap-5 p-10 rounded-lg" enctype="multipart/form-data">
                 <input type="text" name="name" id="name" aria-label="name" placeholder="Name" class="p-5 rounded-lg" value="">
                 <span class=" text-red-600">
                     <?php echo $nameerr;?>
@@ -36,6 +36,11 @@ include 'session.php';
                 <input type="password" name="password" id="password" aria-label="Password" placeholder="Password" class="p-5 rounded-lg" value="">
                 <span class=" text-red-600">
                     <?php echo $passworderr;?>
+                </span>
+
+                <input type="file" name="photo" id="photo">
+                <span class=" text-red-600">
+                    <?php echo $fileerr; ?>
                 </span>
 
                 <button type="submit" name="submit" class="p-5 rounded-lg bg-gray-300 hover:bg-green-300 hover:text-white">Register</button>      
