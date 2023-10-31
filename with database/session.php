@@ -54,9 +54,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // echo in_array($ext, $ex);
         if (in_array($ext, $ex)) {
             echo "yes";
-            $upload = "IMAGES/".$file_name;
+            $uploaded = "IMAGES/".$file_name;
+            $_SESSION["session"]=$uploaded;  
             // $targetFile = $upload . $_FILES["name"];
-            echo $upload."==================";
+            echo $uploaded."==================";
             // echo "-----------------------------".$targetFile;
             $unique_id=uniqid();            
         } else {
@@ -88,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     echo mysqli_error($conn);
                 }                
 
-                if (move_uploaded_file($file["tmp_name"], $upload)) {
+                if (move_uploaded_file($file["tmp_name"], $uploaded)) {
                     echo "yes";
                     $upload_date= date("d-m-y h:i:s"); 
                     if(mysqli_query($conn,"INSERT INTO file_task(email,image_name, unique_name, uploaded_date, modified_date) VALUES(
