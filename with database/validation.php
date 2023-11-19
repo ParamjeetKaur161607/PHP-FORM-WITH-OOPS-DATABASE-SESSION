@@ -25,10 +25,5 @@ function val_alphabets($data)
 function val_email($data)
 {
     return !filter_var($data, FILTER_VALIDATE_EMAIL);
-}
-
-   
-
-
-
+} 
 ?>

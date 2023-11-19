@@ -1,6 +1,5 @@
 <?php
-include("validation.php");
-include("session.php");
+session_start();
 include("compare.php");
 ?>
 <!DOCTYPE html>
@@ -20,7 +19,7 @@ include("compare.php");
             <li class="bg-green-100 rounded-md px-5 py-10 text-lg w-[30rem]">                
                 <?php                
                 echo "<b>";
-                // echo $_SESSION['login'];
+                echo $_SESSION['login'];
                 $log_in = $_SESSION['login'];
                 echo "</b>";
                 $conn = mysqli_connect('localhost', 'param', '161607', 'user');
@@ -31,14 +30,13 @@ include("compare.php");
                 $result = mysqli_query($conn, $sql);
                 $row = mysqli_fetch_assoc($result);
                 echo "<div class='flex justify-between items-center'>";
-                echo "<b class='text-3xl'>ID: " . $row["id"] . "</b><br>";
-                // $path=$_SESSION["upload"];                
+                echo "<b class='text-xl'>ID: " . $row["id"] . "</b><br>";        
                 echo '<img src="IMAGES/' . $row["image_name"] . '" alt="uploaded Image" class="h-20 w-20 rounded rounded-full border">';
                 echo "</div>";
-                echo "<b class='text-2xl'>" . $row["name"] . "</b><br>";                
+                echo "<b class='text-xl'>" . $row["name"] . "</b><br>";                
                 echo "Email: " . $row["email"] . "<br>";
                 echo "DOB: " . $row["dob"] . "<br>";
-                // echo "Password: " . $row["password"] . "<br>";
+                echo "Password: " . $row["password"] . "<br>";
                 echo "Uploaded Date: " . $row["uploaded_date"] . "<br>";
                 echo "Modified Date: " . $row["modified_date"] . "<br>";
                 

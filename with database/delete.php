@@ -6,8 +6,11 @@ include("session.php");
     if (!$conn) {
         die('Could not connect: ' . mysqli_connect_error());
     }
-    $sql = "DELETE FROM registration WHERE email='$email_log'";
+    $sql1 = "DELETE from file_task WHERE email='$email_log'";
+    $sql = "DELETE from registration WHERE email='$email_log'";
+    mysqli_query($conn, $sql1);
     mysqli_query($conn, $sql);
+   
     // $row = mysqli_fetch_assoc($result);
     header("location:registrationform.php");
 ?>
