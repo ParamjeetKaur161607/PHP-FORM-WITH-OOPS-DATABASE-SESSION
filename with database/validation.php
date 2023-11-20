@@ -12,11 +12,23 @@ function my_input($data)
     $data = htmlspecialchars($data);
     return $data;
 }
+/**
+ * Check whether a value is empty or not
+ * 
+ * @param mixed $data The value to check is whether it is empty or not.
+ * @return bool return yes if $data is not empty, false otherwise
+ */
 function val_emptycheck($data)
 {
     return !empty($data);
 }
 
+/**
+ * Check whether a value is empty or not
+ * 
+ * @param mixed $data The value to check is whether it is empty or not.
+ * @return bool return yes if $data is not empty, false otherwise
+ */
 function val_alphabets($data)
 {
     return !preg_match("/^[a-zA-z' ]*$/", $data);

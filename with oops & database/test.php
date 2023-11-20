@@ -85,12 +85,11 @@ Pears: <input type="checkbox" name"fruits[]" value="pears"><br>
 
 // echo $fruits[0];
 
-//}
+// //}
 
 class A{
     public $a=10;
 }
-
 class B extends A{
     public $objA;
 
@@ -103,12 +102,53 @@ class B extends A{
         echo $this->objA->a;
     }
 }
-
 $a=new A();
 $b=new B($a);
 $b->getData();
+
+
+// class A{
+//     public $a=10;
+// }
+
+// class B extends A{
+//     public $b;
+
+//     // function __construct($objA)
+//     // {
+//     //     $this->objA=$objA;
+//     // }
+
+//     function getData(){
+//         $this->b=new A();
+//         echo $this->b->a;
+//     }
+// }
+
+// $b=new B();
+// $b->getData();
 ?>
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+<?php
+
+// class a{
+//     var $abc="hello";
+// }
+// class b{
+//     private $a_object;
+//     public function first(){
+//         echo $this->a_object->abc;
+//     }
+//     public function __construct(a $abcd){
+//         $this->a_object=$abcd;
+//     }
+// }
+// $abcd=new a();
+// $b_object=new b($abcd);
+// $b_object->first();
+
+?>
 </body>
 
 <pre> -->
